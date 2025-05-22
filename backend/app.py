@@ -39,6 +39,10 @@ def generate_schedule():
         
         # Filter workouts based on goal
         filtered_workouts = filter_workouts_by_goal(dataset, goal, gender)
+
+        # Check if there are any workouts available after filtering
+        if not filtered_workouts:
+            return jsonify({'error': 'Tidak ada latihan yang sesuai dengan preferensi Anda'}), 400
         
         # Use hybrid algorithm (combine greedy + genetic)
         schedule = hybrid_algorithm(filtered_workouts, availability)
@@ -52,6 +56,7 @@ def generate_schedule():
         import traceback
         traceback.print_exc()
         return jsonify({'error': f'Terjadi kesalahan: {str(e)}'}), 500
+
 
 # =============== ALGORITHM FUNCTIONS ===============
 def hybrid_algorithm(workouts, availability):
@@ -69,9 +74,9 @@ def filter_workouts_by_goal(workouts, goal, gender):
     filtered = []
     
     for workout in workouts:
-        if workout['type'] == 'rest':
+        # Tidak ada kondisi untuk memfilter latihan berdasarkan jenis
+        if workout['type'] != 'rest':
             filtered.append(workout)
-            continue
             
         # Goal-based filtering
         if goal == 'weight_loss':
@@ -119,30 +124,64 @@ def filter_workouts_by_goal(workouts, goal, gender):
     return filtered
 
 def format_schedule_response(schedule):
-    """Format schedule for frontend display"""
     schedule_serializable = {}
     for day, workouts in schedule.items():
         workout_list = []
         for w in workouts:
-            workout_list.append({
-                'name': w['name'], 
-                'type': w['type'], 
-                'duration': w['duration'],
-                'sets': w.get('sets', 0),
-                'reps': w.get('reps', 0)
-            })
-        
-        # Determine day type
+            if w['type'] == 'rest':
+                workout_list.append({'name': w['name'], 'type': w['type']})
+            else:
+                workout_list.append({
+                    'name': w['name'], 
+                    'type': w['type'], 
+                    'duration': w['duration'],
+                    'sets': w.get('sets', 0),
+                    'reps': w.get('reps', 0)
+                })
+
+        # Tentukan day type
         is_rest = len(workout_list) == 1 and workout_list[0]['type'] == 'rest'
-        total_duration = sum(w['duration'] for w in workout_list)
+        total_duration = sum(w['duration'] for w in workout_list if 'duration' in w)
         
         schedule_serializable[day] = {
-            'day_type': 'Rest Day' if is_rest else f'Workout Day ({total_duration:.1f}h)',
+            'day_type': 'Rest Day' if is_rest else f'Workout Day: {get_workout_day_type(workouts)}',
             'workouts': workout_list,
             'total_duration': total_duration
         }
 
     return schedule_serializable
+
+def get_workout_day_type(workouts):
+    # Tentukan jenis latihan berdasarkan workouts
+    upper_body_workouts = ['upper chest', 'lower chest', 'biceps', 'triceps']
+    lower_body_workouts = ['quadriceps', 'hamstrings', 'calves']
+    push_workouts = ['upper chest', 'shoulders', 'triceps']
+    pull_workouts = ['back', 'biceps']
+    leg_workouts = ['quadriceps', 'hamstrings', 'calves', 'glutes']
+    
+    workout_types = [w['type'] for w in workouts]
+
+    has_upper = any(t in upper_body_workouts for t in workout_types)
+    has_lower = any(t in lower_body_workouts for t in workout_types)
+    has_push = any(t in push_workouts for t in workout_types)
+    has_pull = any(t in pull_workouts for t in workout_types)
+    has_legs = any(t in leg_workouts for t in workout_types)
+
+    if has_upper and has_lower:
+        return 'Full Body'
+    elif has_upper:
+        return 'Upper Body'
+    elif has_lower:
+        return 'Lower Body'
+    elif has_push:
+        return 'Push Day'
+    elif has_pull:
+        return 'Pull Day'
+    elif has_legs:
+        return 'Leg Day'
+    else :
+        return 'Rest Day'
+
 
 # =============== UTILITY FUNCTIONS ===============
 def extract_first_number(text):
