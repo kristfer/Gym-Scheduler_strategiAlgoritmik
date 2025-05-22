@@ -1,0 +1,272 @@
+/* =============== GENERAL STYLES =============== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* =============== FORM STYLES =============== */
+.form-section {
+    margin-bottom: 30px;
+    padding: 25px;
+    border: 2px solid #e8f4fd;
+    border-radius: 12px;
+    background: #f8fbff;
+}
+
+.section-title {
+    font-size: 1.4em;
+    color: #2980b9;
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.day-input {
+    padding: 20px;
+    border: 2px solid #dde8f0;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.day-input:hover {
+    border-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52,152,219,0.2);
+}
+
+.day-label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.input-group label {
+    font-size: 0.9em;
+    color: #666;
+    margin-right: 10px;
+    min-width: 80px;
+}
+
+.input-group input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9em;
+    width: 120px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.form-group select, 
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #dde8f0;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group select:focus, 
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 10px rgba(52,152,219,0.2);
+}
+
+/* =============== BUTTON STYLES =============== */
+.submit-btn {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    margin: 30px auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(52,152,219,0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(52,152,219,0.4);
+    background: linear-gradient(45deg, #2980b9, #1e6f9f);
+}
+
+/* =============== RESULT DISPLAY STYLES =============== */
+.schedule-result {
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.schedule-result h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.day-schedule {
+    margin-bottom: 25px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    border-left: 6px solid #3498db;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.day-schedule h3 {
+    color: #2980b9;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.day-type {
+    font-size: 0.8em;
+    background: #3498db;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.workout-item {
+    margin: 15px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    border-left: 4px solid #e74c3c;
+    transition: transform 0.2s ease;
+}
+
+.workout-item:hover {
+    transform: translateX(5px);
+}
+
+.workout-name {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+.workout-details {
+    color: #666;
+    line-height: 1.6;
+}
+
+.workout-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.sets-reps {
+    background: #27ae60;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.target-muscle {
+    background: #8e44ad;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+/* =============== ERROR STYLES =============== */
+.error-message {
+    color: #e74c3c;
+    padding: 15px 20px;
+    background: #fadbd8;
+    border: 2px solid #f1948a;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* =============== RESPONSIVE DESIGN =============== */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .days-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .input-group label {
+        margin-bottom: 5px;
+    }
+    
+    .input-group input {
+        width: 100%;
+    }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjadwalan Gym Mingguan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🏋️ Penjadwalan Gym Mingguan 🏋️</h1>
+        
+        <!-- =============== INPUT FORM =============== -->
+        <form id="schedule-form">
+            
+            <!-- Schedule Availability Section -->
+            <div class="form-section">
+                <div class="section-title">📅 Ketersediaan Waktu Latihan</div>
+                <div class="days-grid" id="days-container"></div>
+            </div>
+
+            <!-- User Preferences Section -->
+            <div class="form-section">
+                <div class="section-title">👤 Preferensi Pengguna</div>
+                
+                <div class="form-group">
+                    <label for="gender">Jenis Kelamin:</label>
+                    <select id="gender" name="gender">
+                        <option value="pria">Pria</option>
+                        <option value="wanita">Wanita</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal">Tujuan Latihan:</label>
+                    <select id="goal" name="goal">
+                        <option value="weight_loss">Weight Loss (Menurunkan Berat Badan)</option>
+                        <option value="muscle_building">Muscle Building (Membangun Otot)</option>
+                        <option value="endurance">Endurance (Daya Tahan)</option>
+                        <option value="strength">Strength (Kekuatan)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="targetWeight">Target Berat Badan (kg) - Opsional:</label>
+                    <input type="number" id="targetWeight" name="targetWeight" placeholder="Contoh: 70">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">🚀 Buat Jadwal Latihan</button>
+        </form>
+
+        <!-- =============== RESULT CONTAINERS =============== -->
+        <div id="schedule-result"></div>
+        <div id="error-message"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
